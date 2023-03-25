@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Frontend App</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-  <body>
-    <h1>Archivos</h1>
-    <ul id="archivo-lista"></ul>
-    <label for="archivo-nuevo-nombre">Nuevo nombre:</label>
-    <input type="text" id="archivo-nuevo-nombre">
-    <button onclick="actualizarArchivo()">Actualizar</button>
-    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-  </body>
+<head>
+    <title>Lista de archivos</title>
+</head>
+<body>
+    <h1>Lista de archivos</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+        {% for archivo in archivos %}
+        <tr>
+            <td>{{ archivo["FileId"] }}</td>
+            <td>{{ archivo["FileName"] }}</td>
+            <td>
+                <form action="/update" method="POST">
+                    <input type="hidden" name="archivo_id" value="{{ archivo["FileId"] }}">
+                    <input type="submit" value="Cambiar nombre">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
 </html>
