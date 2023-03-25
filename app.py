@@ -16,11 +16,11 @@ def index():
     archivos = json.loads(response.text)['archivos']
     return render_template('index.html', archivos=archivos)
 
-@app.route('/actualizar_nombre', methods=['PUT'])
+@app.route('/actualizar_nombre', methods=['GET', 'POST'])
 def actualizar_nombre():
     # Obtenemos el id del archivo y el nuevo nombre del formulario
     archivo_id = request.form['file_oid']
-    nuevo_nombre = request.form['nuevo_nombre']
+    nuevo_nombre = request.form['new_name']
     # Armamos la url para llamar a la API de actualizar archivo
     url = API_URL + ACTUALIZAR_ARCHIVO_ENDPOINT + '/' + archivo_id
     # Armamos el payload con el nuevo nombre
