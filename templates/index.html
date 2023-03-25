@@ -17,8 +17,8 @@
         {% for archivo in archivos %}
         <tr>
             <td>{{ archivo['_id']['$oid'] }}</td>
-            <td>{{ archivo['archivoName'] }}</td>
-            <td>{{ archivo['archivoSize'] }}</td>
+            <td>{{ archivo['FileName'] }}</td>
+            <td>{{ archivo['FileSize'] }}</td>
             <td>
                 <form method="post">
                     <input type="hidden" name="archivo_oid" value="{{ archivo['_id']['$oid'] }}">
