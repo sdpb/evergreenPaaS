@@ -1,10 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 
 
 API_URL = "http://40.118.66.81/api"
@@ -18,7 +16,7 @@ def index():
     archivos = json.loads(response.text)['archivos']
     return render_template('index.html', archivos=archivos)
 
-@app.route('/actualizar_nombre', methods=['POST'])
+@app.route('/actualizar_nombre', methods=['PUT'])
 def actualizar_nombre():
     # Obtenemos el id del archivo y el nuevo nombre del formulario
     archivo_id = request.form['file_oid']
