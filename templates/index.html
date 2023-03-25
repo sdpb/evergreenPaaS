@@ -35,13 +35,13 @@
 		<tbody>
 			{% for archivo in archivos %}
 				<tr>
-					<td>{{ archivo['FileId'] }}</td>
+					<td>{{ archivo['_id']['oid'] }}</td>
 					<td>{{ archivo['FileName'] }}</td>
 					<td>{{ archivo['FileSize'] }}</td>
 					<td>{{ archivo['Url'] }}</td>
 					<td>
 						<form method="POST" action="{{ url_for('actualizar_nombre') }}">
-							<input type="hidden" name="archivo_id" value="{{ archivo['FileId'] }}">
+							<input type="hidden" name="archivo_id" value="{{ archivo['_id']['oid'] }}">
 							<input type="text" name="nuevo_nombre" placeholder="Nuevo nombre">
 							<button type="submit">Cambiar nombre</button>
 						</form>
