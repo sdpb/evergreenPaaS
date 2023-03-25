@@ -1,28 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lista de archivos</title>
+	<title>Lista de archivos</title>
+	<style>
+		table {
+		  font-family: Arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+
+		tr:nth-child(even) {
+		  background-color: #dddddd;
+		}
+	</style>
 </head>
 <body>
-    <h1>Lista de archivos</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-        {% for archivo in archivos %}
-        <tr>
-            <td>{{ archivo["FileId"] }}</td>
-            <td>{{ archivo["FileName"] }}</td>
-            <td>
-                <form action="/update" method="POST">
-                    <input type="hidden" name="archivo_id" value="{{ archivo["FileId"] }}">
-                    <input type="submit" value="Cambiar nombre">
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+	<h1>Lista de archivos</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>File Id</th>
+				<th>File Name</th>
+				<th>File Size</th>
+				<th>Url</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for archivo in archivos %}
+				<tr>
+					<td>{{ archivo['FileId'] }}</td>
+					<td>{{ archivo['FileName'] }}</td>
+					<td>{{ archivo['FileSize'] }}</td>
+					<td>{{ archivo['Url'] }}</td>
+					<td>
+						<form method="POST" action="{{ url_for('actualizar_nombre') }}">
+							<input type="hidden" name="archivo_id" value="{{ archivo['FileId'] }}">
+							<input type="text" name="nuevo_nombre" placeholder="Nuevo nombre">
+							<button type="submit">Cambiar nombre</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>
