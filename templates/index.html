@@ -14,7 +14,7 @@
             <th>Tamaño</th>
             <th>Acciones</th>
         </tr>
-        {% for file in file_list %}
+        {% for file in archivos %}
         <tr>
             <td>{{ file['_id']['$oid'] }}</td>
             <td>{{ file['FileName'] }}</td>
