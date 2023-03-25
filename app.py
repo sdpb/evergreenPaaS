@@ -11,14 +11,17 @@ ACTUALIZAR_ARCHIVO_ENDPOINT = "/actualizar_archivo"
 
 @app.route('/')
 def index():
+    print('indexxxxxxxxx')
     # Hacemos un llamado a la API para obtener la lista de archivos
     response = requests.get(API_URL + LISTAR_ARCHIVOS_ENDPOINT)
     archivos = json.loads(response.text)['archivos']
+    print('222indexxxxxxxxx')
     return render_template('index.html', archivos=archivos)
 
 @app.route('/cambiar_nombre', methods=['POST'])
 def cambiar_nombre():
     # Obtenemos el id del archivo y el nuevo nombre del formulario
+    print('2333332indexxxxxxxxx')
     archivo_id = request.form['archivo_oid']
     nuevo_nombre = request.form['nuevo_nombre']
     # Armamos la url para llamar a la API de actualizar archivo
@@ -26,6 +29,7 @@ def cambiar_nombre():
     # Armamos el payload con el nuevo nombre
     payload = {"nuevo_nombre": nuevo_nombre}
     headers = {"Content-Type": "application/json"}
+    print('ddsasdas33332indexxxxxxxxx')
     response = requests.put(url, data=json.dumps(payload), headers=headers)
     if response.status_code == 200:
         return redirect(url_for('index'))
