@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Frontend App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Archivos</h1>
+    <ul>
+      {% for archivo in archivo_lista %}
+      <li>{{ archivo.id }} - {{ archivo.nombre }}</li>
+      {% endfor %}
+    </ul>
+    <form id="formulario-actualizar" method="POST">
+      <label for="archivo-id">ID del archivo:</label>
+      <input type="text" id="archivo-id" name="archivo_id">
+      <label for="archivo-nuevo-nombre">Nuevo nombre:</label>
+      <input type="text" id="archivo-nuevo-nombre" name="archivo_nuevo_nombre">
+      <button type="submit">Actualizar</button>
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
