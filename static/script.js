@@ -1,7 +1,8 @@
 const archivoLista = document.getElementById("archivo-lista");
 
 // Consumir la API para obtener la lista de archivos
-fetch(`${process.env.API_URL}/api/listar_archivos`)
+// fetch(`${process.env.API_URL}/api/listar_archivos`)
+fetch(`http://40.118.66.81/api/listar_archivos`)
   .then(response => response.json())
   .then(data => {
     data.forEach(archivo => {
