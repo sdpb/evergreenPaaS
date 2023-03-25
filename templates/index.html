@@ -1,54 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lista de archivos</title>
-	<style>
-		table {
-		  font-family: Arial, sans-serif;
-		  border-collapse: collapse;
-		  width: 100%;
-		}
-
-		td, th {
-		  border: 1px solid #dddddd;
-		  text-align: left;
-		  padding: 8px;
-		}
-
-		tr:nth-child(even) {
-		  background-color: #dddddd;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Listado de archivos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/styles.css') }}">
 </head>
 <body>
-	<h1>Lista de archivos</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>File Id</th>
-				<th>File Name</th>
-				<th>File Size</th>
-				<th>Url</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for archivo in archivos %}
-				<tr>
-					<td>{{ archivo['_id']['oid'] }}</td>
-					<td>{{ archivo['FileName'] }}</td>
-					<td>{{ archivo['FileSize'] }}</td>
-					<td>{{ archivo['Url'] }}</td>
-					<td>
-						<form method="POST" action="{{ url_for('actualizar_nombre') }}">
-							<input type="hidden" name="archivo_id" value="{{ archivo['_id']['oid'] }}">
-							<input type="text" name="nuevo_nombre" placeholder="Nuevo nombre">
-							<button type="submit">Cambiar nombre</button>
-						</form>
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+    <h1>Listado de archivos</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de archivo</th>
+            <th>Tamaño</th>
+            <th>Acciones</th>
+        </tr>
+        {% for file in file_list %}
+        <tr>
+            <td>{{ file['_id']['$oid'] }}</td>
+            <td>{{ file['FileName'] }}</td>
+            <td>{{ file['FileSize'] }}</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="file_id" value="{{ file['FileId'] }}">
+                    <input type="hidden" name="file_oid" value="{{ file['_id']['$oid'] }}">
+                    <label>Cambiar nombre:</label>
+                    <input type="text" name="new_name">
+                    <input type="submit" value="Enviar">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
