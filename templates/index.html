@@ -20,7 +20,7 @@
             <td>{{ archivo['FileName'] }}</td>
             <td>{{ archivo['FileSize'] }}</td>
             <td>
-                <form method="post">
+                <form action="/cambiar_nombre" method="post">
                     <input type="hidden" name="archivo_oid" value="{{ archivo['_id']['$oid'] }}">
                     <label>Cambiar nombre:</label>
                     <input type="text" name="nuevo_nombre">
