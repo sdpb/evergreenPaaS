@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 API_URL = "http://40.118.66.81/api"
 LISTAR_ARCHIVOS_ENDPOINT = "/listar_archivos"
