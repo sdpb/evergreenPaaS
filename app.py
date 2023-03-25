@@ -23,10 +23,13 @@ def actualizar_nombre():
     # Armamos la url para llamar a la API de actualizar archivo
     url = API_URL + ACTUALIZAR_ARCHIVO_ENDPOINT + '/' + archivo_id
     # Armamos el payload con el nuevo nombre
-    payload = {'nuevo_nombre': nuevo_nombre}
-    # Hacemos el llamado a la API de actualizar archivo con el método PUT y el payload correspondiente
-    requests.put(url, data=json.dumps(payload))
-    return redirect(url_for('index'))
+    payload = {"nombre_nuevo": nuevo_nombre}
+    headers = {"Content-Type": "application/json"}
+    response = requests.put(url, data=json.dumps(payload), headers=headers)
+    if response.status_code == 200:
+        return redirect(url_for('index'))
+    else:
+        return f"Error al cambiar el nombre del archivo con id {archivo_id}"
 
 if __name__ == '__main__':
     app.run()
