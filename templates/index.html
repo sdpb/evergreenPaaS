@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de archivos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', archivoname='style.css') }}">
 </head>
 <body>
     <h1>Listado de archivos</h1>
@@ -14,17 +14,16 @@
             <th>Tamaño</th>
             <th>Acciones</th>
         </tr>
-        {% for file in archivos %}
+        {% for archivo in archivos %}
         <tr>
-            <td>{{ file['_id']['$oid'] }}</td>
-            <td>{{ file['FileName'] }}</td>
-            <td>{{ file['FileSize'] }}</td>
+            <td>{{ archivo['_id']['$oid'] }}</td>
+            <td>{{ archivo['archivoName'] }}</td>
+            <td>{{ archivo['archivoSize'] }}</td>
             <td>
                 <form method="post">
-                    <input type="hidden" name="file_id" value="{{ file['FileId'] }}">
-                    <input type="hidden" name="file_oid" value="{{ file['_id']['$oid'] }}">
+                    <input type="hidden" name="archivo_oid" value="{{ archivo['_id']['$oid'] }}">
                     <label>Cambiar nombre:</label>
-                    <input type="text" name="new_name">
+                    <input type="text" name="nuevo_nombre">
                     <input type="submit" value="Enviar">
                 </form>
             </td>
