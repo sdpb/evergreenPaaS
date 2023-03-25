@@ -16,7 +16,7 @@ def index():
     archivos = json.loads(response.text)['archivos']
     return render_template('index.html', archivos=archivos)
 
-@app.route('/cambiar_nombre', methods=['GET', 'POST'])
+@app.route('/cambiar_nombre', methods=['POST'])
 def cambiar_nombre():
     # Obtenemos el id del archivo y el nuevo nombre del formulario
     archivo_id = request.form['archivo_oid']
